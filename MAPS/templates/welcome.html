@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Welcome page
+{% endblock %}
+
+{% block content %}
+
+
+      <header class="mb-auto">
+    <div>
+      <h1 class="float-md-start mb-0">Virtual Market</h1>
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link active" aria-current="page" href="#">Welcome</a>
+        <a class="nav-link" href="{{ url_for("login_page") }}">Log in</a>
+        <a class="nav-link" href="{{ url_for("register_page") }}">Sign up</a>
+      </nav>
+    </div>
+  </header>
+
+    <main class="px-3">
+    <h1>Welcome to The Virtual Market</h1>
+
+        
+
+    <p class="lead">
+      <a href="{{ url_for ('login_page') }}" class="btn btn-lg btn-block btn-primary">Get Started</a>
+    </p>
+  </main>
+
+
+
+{% endblock %}
