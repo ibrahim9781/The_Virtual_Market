@@ -1,8 +1,9 @@
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request,jsonify
 from MAPS import app, db
 from MAPS.models import User
 from MAPS.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm
 from flask_login import login_user, logout_user, login_required, current_user
+from MAPS import Map, icons, GoogleMaps
 
 
 
@@ -16,7 +17,36 @@ def welcome_page():
 @login_required
 def market_page():
 
-    return render_template('market.html')
+    # creating a map in the view
+    mymap = Map(
+        identifier="view-side",
+        lat=37.4419,
+        lng=-122.1419,
+        markers=[(37.4419, -122.1419)]
+    )
+    sndmap = Map(
+        identifier="sndmap",
+        lat=37.4419,
+        lng=-122.1419,
+        markers=[
+            {
+                'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                'lat': 37.4419,
+                'lng': -122.1419,
+                'infobox': "<b>Hello World</b>"
+            },
+            {
+                'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                'lat': 37.4300,
+                'lng': -122.1400,
+                'infobox': "<b>Hello World from other place</b>"
+            }
+        ]
+    )
+
+    return render_template('market.html', mymap=mymap, sndmap=sndmap)
+
+
 
 
 
